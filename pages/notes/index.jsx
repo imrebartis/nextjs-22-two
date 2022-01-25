@@ -1,5 +1,17 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 
-const Page = () => <div>Notes Index Page</div>
+export default () => {
+  const router = useRouter()
+  const id = 2
 
-export default Page
+  return (
+    <div>
+      <button onClick={(e) => router.push('/')}>Go Home</button>
+
+      <button onClick={(e) => router.push('/user/[id]', `/user/${id}`)}>
+        Dashboard
+      </button>
+    </div>
+  )
+}
