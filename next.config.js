@@ -1,13 +1,30 @@
-const {
-  PHASE_PRODUCTION_BUILD,
-  PHASE_DEVELOPMENT_SERVER,
-} = require('next/constants')
+const nextEnv = require('next-env')
+const { default: next } = require('next')
+const dotenvLoad = require('dotenv-load')
 
-module.exports = (phase, { defaultConfig }) => {
-  if (phase === PHASE_DEVELOPMENT_SERVER) {
-    console.log("I'm in dev mode")
-    return defaultConfig
-  }
+dotenvLoad()
 
-  return defaultConfig
-}
+const withEnv = nextEnv()
+module.exports = withEnv({})
+
+// const withPlugins = require('next-compose-plugins')
+// const withOffline = require('next-offline')
+// const withReactSvg = require('next-react-svg')
+// const config = {
+//   env: {
+//     MY_ENV: process.env.HELP_APP_URL,
+//   },
+// }
+
+// module.exports = withPlugins(
+//   [
+//     withOffline,
+//     [
+//       withReactSvg,
+//       {
+//         // config for reactSvgPlugin
+//       },
+//     ],
+//   ],
+//   config,
+// )
